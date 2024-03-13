@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  charts:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-13T22:08:07.095652+07:00"
+    description: A Helm chart for Kubernetes
+    digest: 134498d094deeae21eef14c967d9a8e120e59ede7e94831a12ee5cbbaa9eb5e8
+    name: charts
+    type: application
+    urls:
+    - https://Lanthera-Jendela-Diri.github.io/helm-charts/charts-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-03-13T22:08:07.095046+07:00"

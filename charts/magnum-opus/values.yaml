@@ -1,0 +1,4 @@
+appName: magnum-opus
+
+configmap:
+  name: config

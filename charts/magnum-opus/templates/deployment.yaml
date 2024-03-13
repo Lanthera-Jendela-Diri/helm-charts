@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+      # annotations:
+      #   vault.hashicorp.com/agent-inject: 'true'
+      #   vault.hashicorp.com/role: 'magnum-opus'
+      #   vault.hashicorp.com/agent-inject-secret-credentials.txt: 'secret/data/magnum-opus'
+    spec:
+      serviceAccountName: vault
+      containers:
+        - name: {{ .Values.appName }}
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          env:
+            - name: VAULT_ADDR
+              value: 'http://vault:8200'
+            - name: VAULT_ROLE
+              value: magnum-opus
+            - name: JWT_PATH
+              value: '/var/run/secrets/kubernetes.io/serviceaccount/token'
+          args:
+            - http
+          # command: ["/bin/sh", "-c", "/app/magnum-opus http"]
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            requests:
+              memory: "16Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          # livenessProbe:
+          #   httpGet:
+          #     path: /v1/health
+          #     port: 8080
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /v1/health
+          #     port: 8080
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 3
+      # imagePullSecrets:
+      # - name: regcred

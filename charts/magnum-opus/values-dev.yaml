@@ -1,0 +1,6 @@
+namespace: dev
+
+image:
+  name: "asia-southeast2-docker.pkg.dev/lanthera-staging/lanthera-staging/magnum-opus"
+  tag: ${{ github.sha }}
+  pullPolicy: Always

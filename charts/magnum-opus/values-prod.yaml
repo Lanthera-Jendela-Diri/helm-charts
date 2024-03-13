@@ -1,0 +1,6 @@
+namespace: prod
+
+image:
+  name: "asia-southeast2-docker.pkg.dev/lanthera-prod/lanthera-prod"
+  tag: ${{ github.sha }}
+  pullPolicy: Always

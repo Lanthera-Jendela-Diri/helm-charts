@@ -1,0 +1,6 @@
+namespace: default
+
+image:
+  name: "hilmanadinata/magnum-opus"
+  tag: "v5"
+  pullPolicy: Always
