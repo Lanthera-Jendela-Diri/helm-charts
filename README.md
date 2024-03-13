@@ -1,0 +1,1 @@
+# Lanthera Helm Charts Artifact
